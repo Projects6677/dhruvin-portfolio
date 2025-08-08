@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruvin Sai Sajja - Links</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* slate-900 */
+        }
+        .link-card, .award-card {
+            background-color: rgba(30, 41, 59, 0.5); /* slate-800 with opacity */
+            border: 1px solid #334155; /* slate-700 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .link-card:hover, .award-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: #38BDF8; /* sky-400 */
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+        }
+        
+        /* Animation for page load */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-load {
+            animation: fadeInSlideUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        /* Staggered animation delays */
+        .profile-section { animation-delay: 0.1s; }
+        .links-section > div:nth-child(1) { animation-delay: 0.2s; }
+        .links-section > div:nth-child(2) { animation-delay: 0.3s; }
+        .links-section > div:nth-child(3) { animation-delay: 0.4s; }
+        .links-section > div:nth-child(4) { animation-delay: 0.5s; }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 800px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .rotate-img {
+            transform: rotate(-90deg);
+            max-height: 80vh;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-gray-900 text-white">
+    <div class="container mx-auto max-w-2xl min-h-screen flex flex-col items-center justify-center p-4">
+        
+        <!-- Profile Section -->
+        <div class="text-center mb-8 profile-section animate-load">
+            <img class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-sky-500 shadow-xl" src="https://placehold.co/128x128/0F172A/FFFFFF?text=DS&font=inter" alt="Dhruvin Sai Sajja">
+            <h1 class="text-4xl font-bold">Dhruvin Sai Sajja</h1>
+            <p class="text-gray-400 mt-2 text-lg">AI & Data Science Student | Web Developer | Innovator</p>
+        </div>
+
+        <!-- Links Section -->
+        <div class="w-full space-y-8 links-section">
+
+            <!-- Social & Professional -->
+            <div class="animate-load">
+                <h2 class="text-xl font-semibold mb-3 text-sky-400 text-center tracking-wider">Social & Professional</h2>
+                <div class="space-y-4">
+                    <a href="https://www.linkedin.com/in/dhruvin-sai-sajja-5ba4a6346" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fab fa-linkedin fa-2x w-8 text-center text-sky-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">LinkedIn</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://github.com/Projects6677" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fab fa-github fa-2x w-8 text-center"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">GitHub</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                     <a href="mailto:dhruvinsaisajja@gmail.com" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-envelope fa-2x w-8 text-center text-gray-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Email Me</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Awards Section -->
+            <div class="animate-load">
+                <h2 class="text-xl font-semibold mb-3 text-yellow-400 text-center tracking-wider">Awards & Hackathons</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="award-card p-4 rounded-lg cursor-pointer" onclick="openModal('modal1')">
+                        <img src="https://i.postimg.cc/L868dSnr/1741545141651.jpg" alt="Echoes of Wisdom Certificate" class="rounded-md mb-2 h-40 w-full object-cover">
+                        <p class="font-bold text-lg">1st Place - Echoes of Wisdom</p>
+                        <p class="text-yellow-300">Prize: ₹2000</p>
+                    </div>
+                    <div class="award-card p-4 rounded-lg cursor-pointer" onclick="openModal('modal2')">
+                        <img src="https://i.postimg.cc/9FBQN0Fd/1741545133982.jpg" alt="Prompt to Print Certificate" class="rounded-md mb-2 h-40 w-full object-cover">
+                        <p class="font-bold text-lg">2nd Place - Prompt to Print</p>
+                        <p class="text-yellow-300">Prize: ₹500</p>
+                    </div>
+                    <div class="award-card p-4 rounded-lg cursor-pointer" onclick="openModal('modal3')">
+                        <img src="https://i.postimg.cc/qq3pLBD3/Tech-Trek.jpg" alt="Tech-Trek Certificate" class="rounded-md mb-2 h-40 w-full object-cover">
+                        <p class="font-bold text-lg">Participant - Tech-Trek</p>
+                        <p class="text-yellow-300">Webathon/Hackathon</p>
+                    </div>
+                    <div class="award-card p-4 rounded-lg cursor-pointer" onclick="openModal('modal4')">
+                        <img src="https://i.postimg.cc/FRfYM4n9/AI-Autonomus.jpg" alt="AI Autonomous Hackathon Certificate" class="rounded-md mb-2 h-40 w-full object-cover">
+                        <p class="font-bold text-lg">Participant - AI Autonomous Hackathon</p>
+                        <p class="text-yellow-300">National Level Hackathon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="animate-load">
+                <h2 class="text-xl font-semibold mb-3 text-purple-400 text-center tracking-wider">Projects</h2>
+                <div class="space-y-4">
+                     <a href="https://github.com/leelaranga/ai-buddy.git" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-robot fa-2x w-8 text-center text-purple-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">AI Buddy Project</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dhruvin-sai-sajja-24eu01055/details/projects/" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-car fa-2x w-8 text-center text-purple-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Smart Car Parking System</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="animate-load">
+                <h2 class="text-xl font-semibold mb-3 text-green-400 text-center tracking-wider">Certifications</h2>
+                <div class="space-y-4">
+                    <a href="https://lnkd.in/dSBU82pY" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-rocket fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Build Real World AI Apps with Gemini</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://lnkd.in/diNpEyJW" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-brain fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Prompt Design in Vertex AI</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://lnkd.in/duezGqDe" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-search fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Explore GenAI with Gemini API</span>
+                         <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://lnkd.in/dWP-CTBm" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-desktop fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Develop GenAI Apps with Streamlit</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                     <a href="https://lnkd.in/dTtUHV4H" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-file-alt fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Inspect Rich Docs with Gemini</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://api.badgr.io/public/assertions/GnueyvPFR_-aeFDbr8vh7g" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-network-wired fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Postman API Fundamentals Expert</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://www.coursera.org/account/accomplishments/records/9OI2CABHFSNG" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-laptop-code fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">Supervised Machine Learning</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/D4D0KKXXR8W8" target="_blank" class="link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="fas fa-users fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">AI For Everyone</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-16 mb-4">
+            <p class="text-gray-500 text-sm">Built with passion & code</p>
+        </footer>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal hidden" onclick="closeModal('modal1')">
+        <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+        <img class="modal-content" src="https://i.postimg.cc/L868dSnr/1741545141651.jpg" onclick="event.stopPropagation()">
+    </div>
+    <div id="modal2" class="modal hidden" onclick="closeModal('modal2')">
+        <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+        <img class="modal-content" src="https://i.postimg.cc/9FBQN0Fd/1741545133982.jpg" onclick="event.stopPropagation()">
+    </div>
+    <div id="modal3" class="modal hidden" onclick="closeModal('modal3')">
+        <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
+        <img class="modal-content" src="https://i.postimg.cc/qq3pLBD3/Tech-Trek.jpg" onclick="event.stopPropagation()">
+    </div>
+    <div id="modal4" class="modal hidden" onclick="closeModal('modal4')">
+        <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
+        <img class="modal-content rotate-img" src="https://i.postimg.cc/FRfYM4n9/AI-Autonomus.jpg" onclick="event.stopPropagation()">
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            // A small delay to allow the element to be rendered before adding the active class for transition
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+             // A small delay to allow the transition to finish before hiding
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal if escape key is pressed
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
