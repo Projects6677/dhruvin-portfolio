@@ -34,21 +34,6 @@
             box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
         }
         
-        @keyframes fadeInSlideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-load {
-            animation: fadeInSlideUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-        
-        .profile-section { animation-delay: 0.1s; }
-        .links-section > section { animation-delay: 0.2s; }
-        .links-section > section:nth-child(2) { animation-delay: 0.3s; }
-        .links-section > section:nth-child(3) { animation-delay: 0.4s; }
-        .links-section > section:nth-child(4) { animation-delay: 0.5s; }
-
         /* Modal styles */
         .modal {
             position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
@@ -64,7 +49,6 @@
             position: absolute; top: 15px; right: 35px; color: #f1f1f1;
             font-size: 40px; font-weight: bold; transition: 0.3s;
         }
-        .close-modal:hover, .close-modal:focus { color: #bbb; text-decoration: none; cursor: pointer; }
         .rotate-img { transform: rotate(-90deg); max-height: 80vh; width: auto; }
 
         /* Landing Page Styles */
@@ -83,7 +67,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-900 to-gray-900 text-white">
-    
+
     <!-- Landing Page Section -->
     <div id="landing-page" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-900">
         <canvas id="landing-canvas" class="absolute inset-0 w-full h-full"></canvas>
@@ -99,7 +83,7 @@
     <main id="portfolio-page" class="hidden">
         <div class="container mx-auto max-w-3xl flex flex-col items-center p-4 pt-16">
             <!-- Profile Section -->
-            <header class="text-center mb-12 profile-section animate-load w-full">
+            <header class="text-center mb-12 w-full">
                 <img class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-sky-500 shadow-xl" src="https://placehold.co/128x128/0F172A/FFFFFF?text=DS&font=inter" alt="A profile picture of Dhruvin Sai Sajja">
                 <h1 class="text-4xl font-bold">Dhruvin Sai Sajja</h1>
                 <p class="text-gray-400 mt-2 text-lg">AI & Data Science Student | Web Developer | Innovator</p>
@@ -117,7 +101,7 @@
             <!-- Links Section -->
             <div class="w-full space-y-12 links-section">
                 <!-- Social & Professional -->
-                <section class="animate-load" aria-labelledby="social-heading">
+                <section aria-labelledby="social-heading">
                     <h2 id="social-heading" class="text-2xl font-semibold mb-4 text-sky-400 text-center tracking-wider">Connect With Me</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <a href="https://www.linkedin.com/in/dhruvin-sai-sajja-5ba4a6346" target="_blank" class="card flex items-center p-4 rounded-lg w-full" aria-label="View my LinkedIn profile">
@@ -139,7 +123,7 @@
                 </section>
 
                 <!-- Awards Section -->
-                <section class="animate-load" aria-labelledby="awards-heading">
+                <section aria-labelledby="awards-heading">
                     <h2 id="awards-heading" class="text-2xl font-semibold mb-4 text-yellow-400 text-center tracking-wider">Awards & Hackathons</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- Award cards will be dynamically inserted here -->
@@ -147,7 +131,7 @@
                 </section>
 
                 <!-- Projects -->
-                <section class="animate-load" aria-labelledby="projects-heading">
+                <section aria-labelledby="projects-heading">
                     <h2 id="projects-heading" class="text-2xl font-semibold mb-4 text-purple-400 text-center tracking-wider">Projects</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                          <a href="https://github.com/leelaranga/ai-buddy.git" target="_blank" class="card p-4 rounded-lg block">
@@ -162,7 +146,7 @@
                 </section>
 
                 <!-- Certifications Section -->
-                <section class="animate-load" aria-labelledby="skills-heading">
+                <section aria-labelledby="skills-heading">
                     <h2 id="skills-heading" class="text-2xl font-semibold mb-4 text-green-400 text-center tracking-wider">Certifications</h2>
                     <div id="cert-list" class="space-y-4">
                         <!-- Certification links will be dynamically inserted here -->
@@ -179,6 +163,9 @@
 
     <!-- Modal Structure -->
     <div id="modal-container"></div>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -221,18 +208,14 @@
             });
 
             const certListContainer = document.getElementById('cert-list');
-            function renderCerts() {
-                certListContainer.innerHTML = '';
-                certifications.forEach(cert => {
-                    certListContainer.innerHTML += `
-                        <a href="${cert.href}" target="_blank" class="card link-card flex items-center p-4 rounded-lg w-full">
-                            <i class="${cert.icon} fa-2x w-8 text-center text-green-400"></i>
-                            <span class="ml-4 flex-grow text-lg font-medium">${cert.title}</span>
-                            <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
-                        </a>`;
-                });
-            }
-            renderCerts();
+            certifications.forEach(cert => {
+                certListContainer.innerHTML += `
+                    <a href="${cert.href}" target="_blank" class="card link-card flex items-center p-4 rounded-lg w-full">
+                        <i class="${cert.icon} fa-2x w-8 text-center text-green-400"></i>
+                        <span class="ml-4 flex-grow text-lg font-medium">${cert.title}</span>
+                        <i class="fas fa-arrow-up-right-from-square text-gray-500"></i>
+                    </a>`;
+            });
 
             // --- Landing Page Logic ---
             const landingPage = document.getElementById('landing-page');
@@ -249,18 +232,20 @@
                     setTimeout(type, 100);
                 } else {
                     typingTextElement.innerHTML = textToType; // Remove cursor
-                    exploreBtn.style.opacity = '1';
-                    exploreBtn.classList.add('animate-bounce');
+                    gsap.to(exploreBtn, { opacity: 1, duration: 0.5, ease: 'power2.out' });
                 }
             }
 
             exploreBtn.addEventListener('click', () => {
-                landingPage.style.opacity = '0';
-                setTimeout(() => {
-                    landingPage.style.display = 'none';
-                    portfolioPage.classList.remove('hidden');
-                    document.body.style.overflow = 'auto'; // Allow scrolling
-                }, 800);
+                const tl = gsap.timeline();
+                tl.to(landingPage, { opacity: 0, duration: 0.8, ease: 'power2.inOut' })
+                  .call(() => {
+                      landingPage.style.display = 'none';
+                      portfolioPage.classList.remove('hidden');
+                      document.body.style.overflow = 'auto'; // Allow scrolling
+                  })
+                  .from("header > *", { opacity: 0, y: 30, stagger: 0.15, duration: 0.6, ease: 'power2.out' })
+                  .from(".links-section > section", { opacity: 0, y: 50, stagger: 0.2, duration: 0.8, ease: 'power2.out' }, "-=0.5");
             });
             
             // --- Landing Page Canvas Animation ---
